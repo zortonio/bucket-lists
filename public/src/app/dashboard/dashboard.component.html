@@ -1,0 +1,22 @@
+<div class="nav">
+  <h2>Bucket List</h2>
+  <a [routerLink]="dashboard"><h2>Home</h2></a>
+  <a (click)='logout()'><h2>Logout</h2></a>
+</div>
+<hr>
+<h2>Welcome, {{user.first_name}}!</h2>
+<form name='itemForm' #itemForm='ngForm' (submit)='addItem(); itemForm.reset()'>
+  <input type="text" name="title" placeholder="Title" required minlength="5" [(ngModel)]='item.title'>
+  <input type="text" name='description' placeholder="Description" required minlength="10" [(ngModel)]='item.description'>
+  <select name="companionId" [(ngModel)]='item.companionId'>
+    <option *ngFor='let user of users' value="{{user._id}}">{{user.first_name}}</option>
+  </select>
+  <button [disabled]='!itemForm.valid'>Add to List</button>
+</form>
+<h3>Before I die I want to...</h3>
+<div *ngFor='let item of user.items'>
+  <input type="checkbox" class='checkbox' [checked]='item.status !== "Pending"' (click)='changeStatus(item._id, item.status)'>
+  <p class='bucketItem'>{{item.createdBy}} | {{item.title}} | {{item.description}} - {{item.createdAt}}</p>
+</div>
+<h3>List of other users (Click to view profile)</h3>
+<a [routerLink]="['/user', user._id]" *ngFor='let user of users'><h3>{{user.first_name}}</h3></a>

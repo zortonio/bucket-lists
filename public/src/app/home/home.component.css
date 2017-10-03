@@ -1,0 +1,39 @@
+fieldset{
+    display: inline-block;
+    vertical-align: top;
+    width: 47%;
+}
+#login{
+    margin-right: 5px;
+}
+#registration{
+    margin-left: 5px;
+}
+div{
+    margin: 5px 0;
+}
+div label{
+    display: inline-block;
+    width: 15%;
+    text-align: right;
+}
+div input{
+    display: inline-block;
+    width: 80%;
+}
+button{
+    width: 100%;
+    font-size: 1em;
+}
+p{
+    margin-left: 15%;
+    color: red;
+}
+#loginBtn{
+    background-color: green;
+    color: white;
+}
+#regBtn{
+    background-color: blue;
+    color: white;
+}

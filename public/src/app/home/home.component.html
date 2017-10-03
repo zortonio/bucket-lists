@@ -1,0 +1,45 @@
+<h1>Bucket Lists</h1>
+<fieldset id='login'>
+  <h2>Login</h2>
+  <form name='loginForm' #loginForm='ngForm' (submit)='login(loginForm.value); loginForm.reset()'>
+    <div>
+      <label for="">*Email:</label>
+      <input type="text" name="email" required [ngModel]='logUser.email'>
+    </div>
+    <div>
+      <label for="">*Password:</label>
+      <input type="password" name="password" required [ngModel]='logUser.password'>
+    </div>
+    <p class='error' *ngIf='errorMessages.indexOf("Email/password combo not found.") !== -1'>Invalid Credentials</p>
+    <button [disabled]='!loginForm.valid' id='loginBtn'>Login</button>
+  </form>
+</fieldset>
+<fieldset id='registration'>
+  <h2>Register</h2>
+  <form name='regForm' #regForm='ngForm' (submit)='register(regForm.value); regForm.reset()'>
+    <div>
+      <label for="">*First Name:</label>
+      <input type="text" name="firstName" required minlength="2" [ngModel]='regUser.first_name'>
+    </div>
+    <div>
+      <label for="">*Last Name:</label>
+      <input type="text" name="lastName" required minlength="2" [ngModel]='regUser.last_name'>
+    </div>
+    <div>
+      <label for="">*Email:</label>
+      <input type="text" name="email" required [ngModel]='regUser.email'>
+    </div>
+    <div>
+      <label for="">*Password:</label>
+      <input type="password" name="password" required minlength="6" [(ngModel)]='regUser.password' #password='ngModel'>
+    </div>
+    <p class='error' *ngIf='!password.valid'>Password must be at least 6 characters long.</p>
+    <div>
+      <label for="">*Password Confirmation:</label>
+      <input type="password" name="pw_confirm" required pattern="{{regUser.password}}" [ngModel]='regUser.pw_confirm' #pwConfirm='ngModel'>
+    </div>
+    <p class='error' *ngIf='!pwConfirm.valid'>Password Confirmation must match Password.</p>
+    <p class='error' *ngIf='errorMessages.indexOf("email must be unique") != -1'>Email is already in use, please login.</p>
+    <button [disabled]='!regForm.valid' id='regBtn'>Register</button>
+  </form>
+</fieldset>
